@@ -3,6 +3,7 @@ requitarget/
 !**/src/main/**/target/
 !**/src/test/**/target/
 .kotlin
+target/
 
 ### IntelliJ IDEA ###
 .idea/*
