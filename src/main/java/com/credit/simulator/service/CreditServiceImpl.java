@@ -62,8 +62,10 @@ public class CreditServiceImpl implements CreditService {
 
     @Override
     public void displaySimulation(CreditResponse creditResponse) {
+        System.out.println("\n=== Hasil Simulasi Kendaraan ===");
         System.out.println("Kendaraan: " + creditResponse.getVehicle());
         System.out.println("Harga Kendaraan: Rp. " +  FormatUtils.moneyFormat(creditResponse.getVehiclePrice()));
+        System.out.println("Tenor: " + creditResponse.getLoanTenure());
         creditResponse.getYearlyDetails()
             .forEach((year, detail) ->
                 System.out.printf("tahun %d : Rp. %,.2f/bln , Suku Bunga : %.1f%%%n",
