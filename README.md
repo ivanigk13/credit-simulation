@@ -73,7 +73,10 @@ atau
 Jika argumen diberikan, aplikasi akan membaca file input, menghitung, menampilkan hasil, lalu selesai tanpa menampilkan menu.
 
 ```bash
-java -jar target/credit-simulator.jar input.txt
+java -jar target/credit-simulator.jar file_input.txt
+```
+```bash
+./credit_simulator file_inputs.txt
 ```
 
 Format file dijelaskan di bagian [Input dari File](#input-dari-file).
