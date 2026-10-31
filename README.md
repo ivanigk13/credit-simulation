@@ -6,6 +6,7 @@ Console application untuk menghitung simulasi kredit kendaraan berdasarkan jenis
 
 - [Requirement](#requirement)
 - [Build](#build)
+- [Docker](#docker)
 - [Menjalankan Aplikasi](#menjalankan-aplikasi)
 - [Menu](#menu)
 - [Fitur](#fitur)
@@ -42,6 +43,15 @@ Hasil build:
 
 ```text
 target/credit-simulator.jar
+```
+
+## Docker
+```bash
+docker build -t credit-simulator .
+```
+
+```bash
+docker run -it credit-simulator
 ```
 
 ## Menjalankan Aplikasi
