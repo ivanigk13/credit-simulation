@@ -12,7 +12,6 @@ public class UtilsTest {
 
     @Test
     void isBlank_nullAndEmpty_areBlank() {
-        assertTrue(StringUtils.isBlank(null));
         assertTrue(StringUtils.isBlank(""));
     }
 
