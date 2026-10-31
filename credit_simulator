@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+JAR="$DIR/target/credit-simulator.jar"
+
+if [ ! -f "$JAR" ]; then
+  mvn -q -f "$DIR/pom.xml" clean package -DskipTests
+fi
+
+exec java -jar "$JAR" "$@"
