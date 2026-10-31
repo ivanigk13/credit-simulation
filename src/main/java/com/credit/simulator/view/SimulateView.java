@@ -20,7 +20,6 @@ public class SimulateView implements CommonView{
     private final CreditService creditService;
     private final SheetHolder sheetHolder;
 
-
     public SimulateView(Scanner scanner, CreditValidator creditValidator, CreditService creditService, SheetHolder sheetHolder) {
         this.scanner = scanner;
         this.creditValidator = creditValidator;
@@ -35,7 +34,7 @@ public class SimulateView implements CommonView{
 
         VehicleType vehicleType = inputVehicleType();
         VehicleCondition vehicleCondition = inputVehicleCondition();
-        int vehicleYear = inputVehicleYear(vehicleCondition);
+        int vehicleYear = inputVehicleYear();
         BigDecimal totalLoan = inputTotalLoanAmount();
         int loanTenure = inputLoanTenure();
         BigDecimal downPayment = inputDownPayment();
@@ -52,6 +51,7 @@ public class SimulateView implements CommonView{
             creditValidator.validate(request);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
+            System.out.println("Gagal membuat simulasi credit");
             return;
         }
 
@@ -82,13 +82,14 @@ public class SimulateView implements CommonView{
         }
     }
 
-    private int inputVehicleYear(VehicleCondition vehicleCondition) {
+    private int inputVehicleYear() {
         while (true) {
             try {
                 System.out.print("Input Tahun Kendaraan: ");
                 int year = Integer.parseInt(scanner.nextLine());
-                if (year < 1990 || year > Year.now().getValue()) {
-                    System.out.println("Tahun kendaraan baru minimal 1990 sampai "+  Year.now().getValue());
+                int maxYear = Year.now().getValue() - 1;
+                if (year < 1990 || year > maxYear) {
+                    System.out.println("Tahun kendaraan baru minimal 1990 sampai "+  maxYear);
                 }
                 return year;
             } catch (Exception e) {

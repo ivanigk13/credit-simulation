@@ -1,10 +1,11 @@
 package com.credit.simulator.model;
 
 import java.math.BigDecimal;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class CreditResponse {
+    private String vehicle;
+
     private BigDecimal vehiclePrice;
     private BigDecimal downPayment;
     private Integer loanTenure;
@@ -13,12 +14,21 @@ public class CreditResponse {
 
     public CreditResponse() {}
 
-    public CreditResponse(BigDecimal vehiclePrice, BigDecimal downPayment, Integer loanTenure, BigDecimal monthlyAverage, Map<Integer, YearlyCreditDetail> yearlyDetails) {
+    public CreditResponse(String vehicle, BigDecimal vehiclePrice, BigDecimal downPayment, Integer loanTenure, BigDecimal monthlyAverage, Map<Integer, YearlyCreditDetail> yearlyDetails) {
+        this.vehicle = vehicle;
         this.vehiclePrice = vehiclePrice;
         this.downPayment = downPayment;
         this.loanTenure = loanTenure;
         this.monthlyAverage = monthlyAverage;
         this.yearlyDetails = yearlyDetails;
+    }
+
+    public String getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(String vehicle) {
+        this.vehicle = vehicle;
     }
 
     public BigDecimal getVehiclePrice() {

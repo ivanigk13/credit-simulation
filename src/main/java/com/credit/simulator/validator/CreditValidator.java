@@ -3,8 +3,10 @@ package com.credit.simulator.validator;
 import com.credit.simulator.enums.VehicleCondition;
 import com.credit.simulator.enums.VehicleType;
 import com.credit.simulator.model.CreditRequest;
+import com.credit.simulator.utils.FormatUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Year;
 
 public class CreditValidator{
@@ -33,10 +35,10 @@ public class CreditValidator{
 
         BigDecimal minimumDp = request.getTotalLoanAmount()
             .multiply(minimumDpPercentage)
-            .divide(BigDecimal.valueOf(100));
+            .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
 
         if (request.getDownPayment().compareTo(minimumDp) < 0) {
-            throw new IllegalArgumentException("DP minimal Rp. " + minimumDp.toPlainString());
+            throw new IllegalArgumentException("DP minimal Rp. " + FormatUtils.moneyFormat(minimumDp));
         }
     }
 }

@@ -6,4 +6,5 @@ import com.credit.simulator.model.CreditResponse;
 public interface CreditService {
     CreditResponse calculate(CreditRequest creditRequest);
     void displaySimulation(CreditResponse  creditResponse);
+    CreditRequest loadFromAPI();
 }

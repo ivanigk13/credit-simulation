@@ -15,6 +15,8 @@ public class MainView implements CommonView {
     private CreditService creditService;
     private SheetHolder sheetHolder;
     private SaveSheetView saveSheetView;
+    private SearchSheetView searchSheetView;
+    private LoadView loadView;
 
     public void init(){
         creditValidator = new CreditValidator();
@@ -23,10 +25,13 @@ public class MainView implements CommonView {
 
         simulateView = new SimulateView(scanner, creditValidator, creditService, sheetHolder);
         saveSheetView = new SaveSheetView(scanner, sheetHolder);
+        searchSheetView = new SearchSheetView(scanner, sheetHolder, creditService);
+        loadView = new LoadView(creditService, sheetHolder);
     }
     @Override
     public void show(){
         while(true){
+            System.out.println();
             System.out.println("=== CREDIT SIMULATOR ===");
             System.out.println("1. Calculate Credit");
             System.out.println("2. Save Sheet");
@@ -46,8 +51,10 @@ public class MainView implements CommonView {
                     this.displayAllSheet();
                     break;
                 case 4:
+                    searchSheetView.show();
                     break;
                 case 5:
+                    loadView.show();
                     break;
                 case 0:
                     System.exit(0);
@@ -72,7 +79,6 @@ public class MainView implements CommonView {
             try {
                 System.out.print(">> ");
                 int input = Integer.parseInt(scanner.nextLine());
-
                 if (input >= 0 && input <= 5) {
                     return input;
                 }
