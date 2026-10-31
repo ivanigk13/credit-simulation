@@ -78,12 +78,18 @@ public class CreditServiceImpl implements CreditService {
 
     @Override
     public CreditRequest loadFromAPI() {
+        HttpURLConnection connection = null;
         try {
             URL url = new URL(URL);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
+            connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
+
+            int status = connection.getResponseCode();
+            if(HttpURLConnection.HTTP_OK != status) {
+                System.out.println("Endpoint mengembalikan HTTP " + status + ", menggunakan data sample.");
+                return createDefaultRequest();
+            }
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder json = new StringBuilder();
@@ -97,7 +103,10 @@ public class CreditServiceImpl implements CreditService {
 
         } catch (Exception e) {
             System.out.println("Endpoint tidak dapat diakses, menggunakan data sample.");
+            System.out.println(e.getMessage());
             return createDefaultRequest();
+        } finally {
+            if(connection != null) connection.disconnect();
         }
     }
 
